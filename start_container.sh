@@ -4,7 +4,7 @@
 set -e
 
 # Switch to the root user
-sudo su -
+sudo su - root
 
 # Pull the Docker image
 docker pull gopi303/codepipeline-demo-final
