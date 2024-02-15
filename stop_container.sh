@@ -1,1 +1,5 @@
-f
+set -e
+
+echo "hello"
+
+
