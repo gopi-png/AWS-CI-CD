@@ -31,6 +31,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: .
-  name: build-output-artifact
-  discard-paths: no
+  
