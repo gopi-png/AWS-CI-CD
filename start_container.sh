@@ -7,7 +7,7 @@ set -e
 sudo su - root
 
 # Pull the Docker image
-docker pull gopi303/codepipeline-demo-final-a
+docker pull gopi303/codepipeline-demo-final-a:latest
 
 # Run the Docker container
-docker run -d -p 5000:5000 gopi303/codepipeline-demo-final-a
+docker run -d -p 5000:5000 gopi303/codepipeline-demo-final-a:latest
