@@ -5,14 +5,17 @@ env:
     DOCKER_REGISTRY_USERNAME: /docker-creds/username
     DOCKER_REGISTRY_PASSWORD: /docker-creds/password
     DOCKER_REGISTRY_URL: /docker-registry/url
+
 phases:
   install:
     runtime-versions:
       python: 3.11
+
   pre_build:
     commands:
       - echo "Installing dependencies..."
       - pip install -r requirements.txt
+
   build:
     commands:
       - echo "Running tests..."
@@ -20,9 +23,14 @@ phases:
       - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
       - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/codepipeline-demo-final-a:latest" .
       - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/codepipeline-demo-final-a:latest"
+
   post_build:
     commands:
       - echo "Build completed successfully!"
-  # artifacts:
-  #   files:
-  #   - '**/*'
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: .
+  name: build-output-artifact
+  discard-paths: no
